@@ -35,4 +35,15 @@ return [
         ],
     ],
 
+    'keycloak' => [
+        'client_id' => env('KEYCLOAK_CLIENT_ID'),
+        'client_secret' => env('KEYCLOAK_CLIENT_SECRET'),
+        'redirect' => env('KEYCLOAK_REDIRECT_URI'),
+        'base_url' => env('KEYCLOAK_BASE_URL'),
+        'realms' => env('KEYCLOAK_REALM'),
+        'admin_client_id' => env('KEYCLOAK_ADMIN_CLIENT_ID'),
+        'admin_username' => env('KEYCLOAK_ADMIN_USERNAME'),
+        'admin_password' => env('KEYCLOAK_ADMIN_PASSWORD'),
+    ],
+
 ];
