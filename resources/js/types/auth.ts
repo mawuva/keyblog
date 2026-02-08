@@ -10,6 +10,22 @@ export type User = {
     [key: string]: unknown;
 };
 
+
+export type UserData = {
+    id: string;
+    uuid: string;
+    keycloakId: string;
+    name: string;
+    email: string;
+    roles: string[];
+    groups: string[];
+    isAdmin: boolean;
+    isActive: boolean;
+    lastLoginAt: string | null;
+    lastLoginIp: string | null;
+    createdAt: string | null;
+};
+
 export type Auth = {
     user: User;
 };

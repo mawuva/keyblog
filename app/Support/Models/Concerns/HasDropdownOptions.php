@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Support\Models;
+namespace App\Support\Models\Concerns;
 
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Database\Eloquent\Model;

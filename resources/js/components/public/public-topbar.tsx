@@ -1,5 +1,5 @@
 import { Link } from '@inertiajs/react';
-import { home, register } from '@/routes';
+import { home, login } from '@/routes';
 
 export function PublicTopbar() {
     return (
@@ -19,10 +19,10 @@ export function PublicTopbar() {
                             Accueil
                         </Link>
                         <Link
-                            href={register().url}
+                            href={login().url}
                             className="text-secondary-foreground/90 hover:text-secondary-foreground transition-colors"
                         >
-                            Inscription
+                            Connexion
                         </Link>
                         <a
                             href="/admin/login"
