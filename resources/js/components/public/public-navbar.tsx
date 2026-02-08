@@ -1,4 +1,5 @@
 import ThemeToggle from '@/components/appearance/theme-toggle';
+import LangSwitcher from '@/components/i18n/lang-switcher';
 import BrandLogo from '@/components/logo/brand-logo';
 
 export function PublicNavbar() {
@@ -9,8 +10,9 @@ export function PublicNavbar() {
                     {/* Logo/Brand */}
                     <BrandLogo />
 
-                    {/* Right side - Theme Toggle */}
+                    {/* Right side - Theme Toggle and Lang Switcher */}
                     <div className="flex items-center space-x-4">
+                        <LangSwitcher />
                         <ThemeToggle />
                     </div>
                 </div>

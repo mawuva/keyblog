@@ -1,14 +1,13 @@
 import PublicLayout from '@/layouts/public/public-layout';
-import { login } from '@/routes/auth';
 import { useLang } from '@/hooks/use-lang'
 
-export default function Home() {
+export default function About() {
     const { __, trans } = useLang()
 
     return (
         <PublicLayout
             headTags={{
-                title: "Home",
+                title: "About",
                 children: (
                     <>
                         <link rel="preconnect" href="https://fonts.bunny.net" />
@@ -32,10 +31,6 @@ export default function Home() {
 
                         { __('messages.greeting') } <br />
                         { trans('messages.welcome', { name: 'John' }) }
-
-                        <a href={login().url} className="text-blue-600 hover:text-blue-800 underline">
-                            Login with Keycloak
-                        </a>
                     </main>
                 </div>
             </div>

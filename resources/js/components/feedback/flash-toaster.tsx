@@ -1,6 +1,6 @@
 import { usePage } from '@inertiajs/react';
-import { toast } from 'sonner';
 import { useEffect } from 'react';
+import { toast, Toaster } from 'sonner';
 import { type SharedData } from '@/types';
 
 export default function FlashToaster() {
@@ -29,6 +29,13 @@ export default function FlashToaster() {
         }
     }, [flash]);
 
-    return null;
+    return (
+        <Toaster 
+            position="top-right"
+            expand={false}
+            richColors
+            closeButton
+        />
+    );
 }
 

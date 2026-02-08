@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Illuminate\Http\Request;
 use Inertia\Middleware;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class HandleInertiaRequests extends Middleware
 {
@@ -48,10 +49,31 @@ class HandleInertiaRequests extends Middleware
         return [
             ...parent::share($request),
             'name' => config('app.name'),
+            'flash' => flash()->getMessage()?->toArray() ?? null,
             'auth' => [
-                'user' => $request->user(),
+                'user' => $this->getUserData($request),
             ],
             'sidebarOpen' => ! $request->hasCookie('sidebar_state') || $request->cookie('sidebar_state') === 'true',
+            'locales' => LaravelLocalization::getSupportedLocales(),
+            'currentLocale' => LaravelLocalization::getCurrentLocale(),
+            'currentLocaleName' => LaravelLocalization::getCurrentLocaleName(),
         ];
+    }
+
+    
+    /**
+     * Get user data for sharing with Inertia
+     */
+    protected function getUserData(Request $request): ?array
+    {
+        $userData = request_user_data($request);
+        
+        // Retourner null si pas d'utilisateur
+        if (!$userData) {
+            return null;
+        }
+        
+        // Utiliser la méthode toArray() de UserData
+        return $userData->toArray();
     }
 }
