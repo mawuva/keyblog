@@ -35,6 +35,16 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
+
+        syncLangFiles([
+            'actions',
+            'auth',
+            'common',
+            'passwords',
+            'validation',
+            'messages',
+        ]);
+        
         return [
             ...parent::share($request),
             'name' => config('app.name'),

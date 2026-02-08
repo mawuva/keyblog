@@ -27,6 +27,7 @@
         "typescript-eslint": "^8.23.0"
     },
     "dependencies": {
+        "@erag/lang-sync-inertia": "^1.4.12",
         "@headlessui/react": "^2.2.0",
         "@inertiajs/react": "^2.3.7",
         "@radix-ui/react-avatar": "^1.1.3",
