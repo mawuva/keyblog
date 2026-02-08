@@ -20,7 +20,8 @@
         "laravel/wayfinder": "^0.1.9",
         "mcamara/laravel-localization": "^2.3",
         "socialiteproviders/keycloak": "^5.3",
-        "spatie/laravel-data": "^4.19"
+        "spatie/laravel-data": "^4.19",
+        "ymigval/laravel-model-cache": "^1.1"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^4.0",

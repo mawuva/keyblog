@@ -2,10 +2,9 @@ import type { PropsWithChildren } from 'react';
 import { Breadcrumbs } from '@/components/common/breadcrumbs';
 import FlashToaster from '@/components/feedback/flash-toaster';
 import { AppHeadTags } from '@/components/layout/app-head-tags';
+import PublicHeader from '@/components/public/public-header';
 import type { BreadcrumbItem, HeadTags } from '@/types';
 import PublicFooter from '@/components/public/public-footer';
-import { PublicNavbar } from '@/components/public/public-navbar';
-import { PublicTopbar } from '@/components/public/public-topbar';
 
 interface PublicLayoutProps extends PropsWithChildren {
     headTags?: HeadTags;
@@ -31,12 +30,7 @@ export default function PublicLayout({
             <FlashToaster />
             
             <div className="min-h-screen flex flex-col bg-background light">
-                {showNavbar && (
-                    <>
-                        <PublicTopbar />
-                        <PublicNavbar />
-                    </>
-                )}
+                {showNavbar && <PublicHeader />}
                 
                 {showBreadcrumbs && breadcrumbs.length > 0 && (
                     <div className="container mx-auto px-4 py-4">
