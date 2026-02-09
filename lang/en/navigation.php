@@ -13,6 +13,7 @@ return [
         'logout' => 'Logout',
         'login' => 'Login',
         'register' => 'Register',
+        'admin' => 'Admin',
     ],
 
     // User dropdown
@@ -61,5 +62,14 @@ return [
         'dashboard' => 'Dashboard',
         'profile' => 'Profile',
         'settings' => 'Settings',
+    ],
+
+    // Admin Navigation
+    'admin' => [
+        'nav' => [
+            'dashboard' => 'Dashboard',
+            'users' => 'Users',
+            'settings' => 'Settings',
+        ],
     ],
 ];

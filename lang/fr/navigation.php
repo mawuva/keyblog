@@ -62,4 +62,13 @@ return [
         'profile' => 'Profil',
         'settings' => 'Paramètres',
     ],
+
+    // Admin Navigation
+    'admin' => [
+        'nav' => [
+            'dashboard' => 'Tableau de bord',
+            'users' => 'Utilisateurs',
+            'settings' => 'Paramètres',
+        ],
+    ],
 ];

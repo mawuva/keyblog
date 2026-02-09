@@ -1,7 +1,8 @@
+import ThemeToggleAuth from '@/components/appearance/theme-toggle-auth';
 import { Breadcrumbs } from '@/components/common/breadcrumbs';
+import LangSwitcher from '@/components/i18n/lang-switcher';
 import { SidebarTrigger } from '@/components/ui/sidebar';
 import type { BreadcrumbItem as BreadcrumbItemType } from '@/types';
-import ThemeToggleAuth from '@/components/appearance/theme-toggle-auth';
 
 export function AdminSidebarHeader({
     breadcrumbs = [],
@@ -16,7 +17,10 @@ export function AdminSidebarHeader({
                     <Breadcrumbs breadcrumbs={breadcrumbs} />
                 </div>
 
-                <ThemeToggleAuth />
+                <div className="flex items-center gap-2">
+                    <LangSwitcher variant="icon" />
+                    <ThemeToggleAuth />
+                </div>
             </div>
         </header>
     );

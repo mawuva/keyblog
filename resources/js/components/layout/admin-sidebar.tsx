@@ -13,29 +13,32 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from '@/components/ui/sidebar';
+import { useLang } from '@/hooks/use-lang';
 import type { NavItem } from '@/types';
 
-const mainNavItems: NavItem[] = [
-    {
-        title: 'Dashboard',
-        href: '/admin/dashboard',
-        icon: LayoutGrid,
-    },
-    {
-        title: 'Users',
-        href: '/admin/users',
-        icon: Users,
-    },
-    {
-        title: 'Settings',
-        href: '/admin/settings',
-        icon: Settings,
-    },
-];
-
-const footerNavItems: NavItem[] = [];
-
 export function AdminSidebar() {
+    const { __ } = useLang();
+
+    const mainNavItems: NavItem[] = [
+        {
+            title: __('navigation.admin.nav.dashboard'),
+            href: '/admin/dashboard',
+            icon: LayoutGrid,
+        },
+        {
+            title: __('navigation.admin.nav.users'),
+            href: '/admin/users',
+            icon: Users,
+        },
+        {
+            title: __('navigation.admin.nav.settings'),
+            href: '/admin/settings',
+            icon: Settings,
+        },
+    ];
+
+    const footerNavItems: NavItem[] = [];
+
     return (
         <Sidebar collapsible="icon" variant="sidebar">
             <SidebarHeader>
