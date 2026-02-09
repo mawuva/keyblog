@@ -13,7 +13,7 @@ trait HasKeycloakRoles
      */
     public function hasRole(string $role): bool
     {
-        return in_array($role, $this->roles ?? []);
+        return in_array($role, $this->keycloak_roles ?? []);
     }
 
     /**
@@ -59,7 +59,7 @@ trait HasKeycloakRoles
      */
     public function isInGroup(string $group): bool
     {
-        return in_array($group, $this->groups ?? []);
+        return in_array($group, $this->keycloak_groups ?? []);
     }
 
     /**

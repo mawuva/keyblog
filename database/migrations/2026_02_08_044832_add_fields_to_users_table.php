@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('keycloak_id')->unique()->nullable()->after('id');
-            $table->json('groups')->nullable()->after('email');
-            $table->json('roles')->nullable()->after('groups');
+            $table->json('keycloak_groups')->nullable()->after('email');
+            $table->json('keycloak_roles')->nullable()->after('keycloak_groups');
             $table->timestamp('last_login_at')->nullable()->after('updated_at');
             $table->string('last_login_ip')->nullable()->after('last_login_at');
             $table->boolean('is_active')->default(true)->after('last_login_ip');
@@ -29,8 +29,8 @@ return new class extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn([
                 'keycloak_id',
-                'groups', 
-                'roles',
+                'keycloak_groups', 
+                'keycloak_roles',
                 'last_login_at',
                 'last_login_ip',
                 'is_active'

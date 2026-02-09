@@ -17,8 +17,8 @@ class SaveUserFromKeycloak
                 'email'  => $data->email,
                 'password'  => config("constants.default_password"),
                 'name'   => $data->name,
-                'groups' => $data->groups,
-                'roles'  => $data->realm_roles,
+                'keycloak_groups' => $data->groups,
+                'keycloak_roles'  => $data->realm_roles,
             ]
         );
 

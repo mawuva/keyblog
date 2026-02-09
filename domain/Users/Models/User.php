@@ -3,7 +3,9 @@
 namespace Domain\Users\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
+use Domain\Users\Concerns\HasKeycloakRoles;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use App\Support\Models\Concerns\HasModelUtils;
 use App\Support\Models\Concerns\HasUuidManager;
@@ -11,8 +13,6 @@ use YMigVal\LaravelModelCache\HasCachedQueries;
 use YMigVal\LaravelModelCache\ModelRelationships;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Domain\Users\Enums\KeycloakRoleEnum;
-use Domain\Users\Concerns\HasKeycloakRoles;
 
 class User extends Authenticatable
 {
@@ -24,7 +24,8 @@ class User extends Authenticatable
         HasModelUtils,
         HasCachedQueries,
         ModelRelationships,
-        HasKeycloakRoles;
+        HasKeycloakRoles,
+        HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -36,8 +37,8 @@ class User extends Authenticatable
         'email',
         'password',
         'keycloak_id',
-        'groups',
-        'roles',
+        'keycloak_groups',
+        'keycloak_roles',
         'last_login_at',
         'last_login_ip',
         'is_active',
@@ -65,8 +66,8 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
-            'groups' => 'array',
-            'roles' => 'array',
+            'keycloak_groups' => 'array',
+            'keycloak_roles' => 'array',
             'last_login_at' => 'datetime',
             'is_active' => 'boolean',
         ];

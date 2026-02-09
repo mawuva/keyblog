@@ -9,15 +9,26 @@ use Illuminate\Database\Seeder;
 class DatabaseSeeder extends Seeder
 {
     /**
-     * Seed the application's database.
+     * Seed the application database.
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        $this->command->info('Starting database seeding...');
 
+        // Seed permissions first (required by roles)
+        $this->call([
+            PermissionSeeder::class,
+            RoleSeeder::class,
+            RolePermissionSeeder::class,
+            KeycloakRoleSeeder::class,
+        ]);
+
+        // Create test user
         User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);
+
+        $this->command->info('Database seeding completed!');
     }
 }
