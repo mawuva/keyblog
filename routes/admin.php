@@ -26,6 +26,18 @@ Route::group([
         Route::get('dashboard', DashboardController::class)
             ->name('dashboard');
 
-        Route::resource('category', CategoryController::class);
+        Route::controller(CategoryController::class)
+            ->prefix('category')
+            ->as('category.')
+            ->group(function () {
+                Route::get('/', 'index')->name('index');
+                Route::get('/create', 'create')->name('create');
+                Route::post('/', 'store')->name('store');
+                Route::get('/{category}', 'show')->name('show');
+                Route::get('/{category}/edit', 'edit')->name('edit');
+                Route::put('/{category}', 'update')->name('update');
+                Route::delete('/{category}', 'destroy')->name('destroy');
+                Route::patch('/{category}/status', 'changeStatus')->name('change-status');
+            });
     });
 });

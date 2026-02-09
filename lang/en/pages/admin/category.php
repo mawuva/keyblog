@@ -23,6 +23,7 @@ return [
         'add' => 'Add a category',
         'edit' => 'Edit',
         'delete' => 'Delete',
+        'change_status' => 'Change status',
     ],
 
     'create' => [
@@ -49,6 +50,13 @@ return [
         'order' => 'Order',
         'icon_type' => 'Icon type',
         'icon_value' => 'Icon value',
+    ],
+
+    'status_change' => [
+        'title' => 'Change status',
+        'description' => 'Select the new status for this category.',
+        'cancel' => 'Cancel',
+        'confirm' => 'Confirm',
     ],
 
     'empty' => 'No categories found.',

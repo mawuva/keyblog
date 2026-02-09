@@ -27,6 +27,7 @@ export type ColumnDef<T> = {
     key: keyof T | string;
     label: string;
     sortable?: boolean;
+    sortKey?: string;
     render?: (item: T) => ReactNode;
     className?: string;
 };

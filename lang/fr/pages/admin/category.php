@@ -23,6 +23,7 @@ return [
         'add' => 'Ajouter une catégorie',
         'edit' => 'Modifier',
         'delete' => 'Supprimer',
+        'change_status' => 'Changer le statut',
     ],
 
     'create' => [
@@ -49,6 +50,13 @@ return [
         'order' => 'Ordre',
         'icon_type' => 'Type d\'icône',
         'icon_value' => 'Valeur de l\'icône',
+    ],
+
+    'status_change' => [
+        'title' => 'Changer le statut',
+        'description' => 'Sélectionnez le nouveau statut pour cette catégorie.',
+        'cancel' => 'Annuler',
+        'confirm' => 'Confirmer',
     ],
 
     'empty' => 'Aucune catégorie trouvée.',

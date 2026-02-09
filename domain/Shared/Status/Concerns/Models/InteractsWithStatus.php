@@ -72,6 +72,12 @@ trait InteractsWithStatus
         }
 
         $this->setStatus($toEnum->value, $reason);
+
+        $this->unsetRelation('statuses');
+
+        if (method_exists($this, 'flushCache')) {
+            $this->flushCache();
+        }
     }
 
     /**

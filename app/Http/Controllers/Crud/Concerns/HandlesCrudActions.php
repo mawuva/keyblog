@@ -19,6 +19,7 @@ trait HandlesCrudActions
 
         return inertia($this->getView('index'), [
             'items' => $this->transformCollection($items),
+            ...$this->formData(),
         ]);
     }
 

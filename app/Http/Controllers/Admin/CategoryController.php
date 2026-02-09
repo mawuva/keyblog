@@ -5,16 +5,21 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Crud\BaseCrudController;
+use App\Http\Controllers\Crud\Concerns\HandlesCrudStatusChange;
 use Domain\Catalogs\Data\CategoryData;
+use Domain\Catalogs\Enums\CatalogEnum;
 use Domain\Catalogs\Models\Category;
 use Domain\Catalogs\Resources\CategoryResource;
 use Domain\Shared\Status\Queries\Filters\StatusFilter;
 use Domain\Shared\Status\Queries\Includes\LatestStatusInclude;
+use Illuminate\Database\Eloquent\Model;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\AllowedInclude;
 
 class CategoryController extends BaseCrudController
 {
+    use HandlesCrudStatusChange;
+
     protected array $with = ['statuses'];
 
     protected function modelClass(): string
@@ -50,6 +55,16 @@ class CategoryController extends BaseCrudController
     {
         return [
             AllowedInclude::custom('latestStatus', new LatestStatusInclude()),
+        ];
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    protected function formData(?Model $item = null): array
+    {
+        return [
+            'statusOptions' => CatalogEnum::toArray(),
         ];
     }
 }

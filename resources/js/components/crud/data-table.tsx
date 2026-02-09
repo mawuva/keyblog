@@ -38,7 +38,7 @@ export default function DataTable<T>({
                             {column.sortable && onSort ? (
                                 <DataTableSortHeader
                                     label={column.label}
-                                    column={String(column.key)}
+                                    column={column.sortKey ?? String(column.key)}
                                     currentSort={currentSort}
                                     onSort={onSort}
                                 />
