@@ -44,6 +44,7 @@ class HandleInertiaRequests extends Middleware
             'passwords',
             'validation',
             'messages',
+            'navigation',
         ]);
         
         return [

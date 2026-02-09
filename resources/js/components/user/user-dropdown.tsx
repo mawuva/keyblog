@@ -9,24 +9,23 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { type SharedData } from '@/types';
+import { useInitials } from '@/hooks/use-initials';
 import { useLang } from '@/hooks/use-lang';
+import { type SharedData } from '@/types';
+import { type DropdownItem } from '@/types/navigation';
+import { getUserDropdownItems } from '@/lib/navigation';
 
 export default function UserDropdown() {
     const { auth } = usePage<SharedData>().props;
     const { __ } = useLang();
+    const getInitials = useInitials();
     const user = auth.user;
 
     if (!user) {
         return null;
     }
 
-    const initials = user.name
-        .split(' ')
-        .map((word: string) => word.charAt(0))
-        .join('')
-        .toUpperCase()
-        .slice(0, 2);
+    const initials = getInitials(user.name);
 
     const handleLogout = () => {
         router.post('/logout');
@@ -40,6 +39,19 @@ export default function UserDropdown() {
             router.visit('/member/dashboard');
         }
     };
+
+    // Configuration des items du dropdown via la fonction utilitaire
+    const dropdownItems: DropdownItem[] = getUserDropdownItems(
+        handleDashboard,
+        handleLogout,
+        __
+    );
+
+    // Mapping des icônes pour les items
+    const iconMap = {
+        dashboard: LayoutDashboard,
+        logout: LogOut,
+    } as const;
 
     return (
         <DropdownMenu>
@@ -68,16 +80,25 @@ export default function UserDropdown() {
                         </p>
                     </div>
                 </div>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem onClick={handleDashboard} className="cursor-pointer">
-                    <LayoutDashboard className="mr-2 h-4 w-4" />
-                    <span>{__('user_dropdown.dashboard')}</span>
-                </DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem onClick={handleLogout} className="cursor-pointer">
-                    <LogOut className="mr-2 h-4 w-4" />
-                    <span>{__('user_dropdown.logout')}</span>
-                </DropdownMenuItem>
+                
+                {/* Itération sur les items du dropdown */}
+                {dropdownItems.map((item) => {
+                    if (item.separator) {
+                        return <DropdownMenuSeparator key={item.key} />;
+                    }
+                    
+                    const Icon = item.icon || iconMap[item.key as keyof typeof iconMap];
+                    return (
+                        <DropdownMenuItem
+                            key={item.key}
+                            onClick={item.action}
+                            className="cursor-pointer"
+                        >
+                            {Icon && <Icon className="mr-2 h-4 w-4" />}
+                            <span>{item.title}</span>
+                        </DropdownMenuItem>
+                    );
+                })}
             </DropdownMenuContent>
         </DropdownMenu>
     );

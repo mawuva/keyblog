@@ -12,3 +12,14 @@ export type NavItem = {
     icon?: LucideIcon | null;
     isActive?: boolean;
 };
+
+export interface DropdownItem extends Omit<NavItem, 'href' | 'icon'> {
+    key: string;
+    action: () => void;
+    separator?: boolean;
+    icon?: React.ComponentType<{ className?: string }>;
+}
+
+export interface NavigationConfig {
+    userDropdownItems: DropdownItem[];
+}
