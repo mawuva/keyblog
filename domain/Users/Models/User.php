@@ -11,7 +11,8 @@ use YMigVal\LaravelModelCache\HasCachedQueries;
 use YMigVal\LaravelModelCache\ModelRelationships;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Domain\Users\Enums\KeycloakRole;
+use Domain\Users\Enums\KeycloakRoleEnum;
+use Domain\Users\Concerns\HasKeycloakRoles;
 
 class User extends Authenticatable
 {
@@ -22,7 +23,8 @@ class User extends Authenticatable
         HasUuidManager,
         HasModelUtils,
         HasCachedQueries,
-        ModelRelationships;
+        ModelRelationships,
+        HasKeycloakRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -68,53 +70,5 @@ class User extends Authenticatable
             'last_login_at' => 'datetime',
             'is_active' => 'boolean',
         ];
-    }
-
-    /**
-     * Check if user has specific role
-     */
-    public function hasRole(string $role): bool
-    {
-        return in_array($role, $this->roles ?? []);
-    }
-
-    public function hasAnyRole(KeycloakRole ...$roles): bool
-    {
-        foreach ($roles as $role) {
-            if ($this->hasRole($role->value)) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    public function isAdmin(): bool
-    {
-        return $this->hasAnyRole(KeycloakRole::ADMIN);
-    }
-
-    public function isCustomer(): bool
-    {
-        return $this->hasAnyRole(KeycloakRole::CUSTOMER);
-    }
-
-    /**
-     * Check if user is in specific group
-     */
-    public function isInGroup(string $group): bool
-    {
-        return in_array($group, $this->groups ?? []);
-    }
-
-    /**
-     * Update login information
-     */
-    public function updateLoginInfo(?string $ip = null): void
-    {
-        $this->update([
-            'last_login_at' => now(),
-            'last_login_ip' => $ip ?? request()->ip(),
-        ]);
     }
 }

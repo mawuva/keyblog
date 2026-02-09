@@ -1,7 +1,6 @@
 import { usePage } from '@inertiajs/react';
 import type { ReactNode } from 'react';
 import FlashToaster from '@/components/feedback/flash-toaster';
-import ToasterComponent from '@/components/feedback/toaster';
 import { SidebarProvider } from '@/components/ui/sidebar';
 import type { SharedData } from '@/types';
 
@@ -16,7 +15,6 @@ export function AppShell({ children, variant = 'header' }: Props) {
     if (variant === 'header') {
         return (
             <>
-                <ToasterComponent />
                 <FlashToaster />
                 <div className="flex min-h-screen w-full flex-col">{children}</div>
             </>
@@ -25,7 +23,6 @@ export function AppShell({ children, variant = 'header' }: Props) {
 
     return (
         <>
-            <ToasterComponent />
             <FlashToaster />
             <SidebarProvider defaultOpen={isOpen}>{children}</SidebarProvider>
         </>

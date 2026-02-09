@@ -4,7 +4,7 @@ import AdminLayout from '@/layouts/admin/admin-layout';
 export default function AdminDashboard() {
     return (
         <AdminLayout headTags={{ title: 'Admin Dashboard' }}>
-            <div className="space-y-6">
+            <div className="flex h-full flex-1 flex-col gap-4 overflow-x-auto rounded-xl p-4">
                 <div>
                     <h1 className="text-3xl font-bold">Tableau de bord administrateur</h1>
                     <p className="text-muted-foreground">

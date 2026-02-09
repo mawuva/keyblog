@@ -6,7 +6,7 @@ namespace Domain\Users\Data;
 
 use Spatie\LaravelData\Data;
 use Domain\Users\Models\User;
-use Domain\Users\Enums\KeycloakRole;
+use Domain\Users\Enums\KeycloakRoleEnum;
 
 class AuthenticatedUserData extends Data
 {
@@ -35,7 +35,7 @@ class AuthenticatedUserData extends Data
             email: $user->email,
             roles: $user->roles ?? [],
             groups: $user->groups ?? [],
-            isAdmin: $user->hasRole(KeycloakRole::ADMIN->value) || $user->isInGroup(KeycloakRole::ADMIN->value),
+            isAdmin: $user->hasRole(KeycloakRoleEnum::ADMIN->value) || $user->isInGroup(KeycloakRoleEnum::ADMIN->value),
             isActive: $user->is_active ?? true,
             lastLoginAt: $user->last_login_at?->format('Y-m-d H:i:s'),
             lastLoginIp: $user->last_login_ip,
@@ -63,8 +63,8 @@ class AuthenticatedUserData extends Data
 
     private static function isAdminFromKeycloakPayload(array $payload): bool
     {
-        return in_array(KeycloakRole::ADMIN->value, $payload['realm_roles'] ?? [], true)
-            || in_array(KeycloakRole::ADMIN->value, $payload['groups'] ?? [], true);
+        return in_array(KeycloakRoleEnum::ADMIN->value, $payload['realm_roles'] ?? [], true)
+            || in_array(KeycloakRoleEnum::ADMIN->value, $payload['groups'] ?? [], true);
     }
 
     public function hasRole(string $role): bool

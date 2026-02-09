@@ -29,6 +29,10 @@ return Application::configure(basePath: dirname(__DIR__))
             'localeSessionRedirect'   => \Mcamara\LaravelLocalization\Middleware\LocaleSessionRedirect::class,
             'localeCookieRedirect'    => \Mcamara\LaravelLocalization\Middleware\LocaleCookieRedirect::class,
             'localeViewPath'          => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationViewPath::class,
+            
+            /**** KEYCLOAK MIDDLEWARE ALIASES ****/
+            'keycloak.auth'           => \App\Http\Middleware\KeycloakAuth::class,
+            'keycloak.role'           => \App\Http\Middleware\KeycloakUserRole::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

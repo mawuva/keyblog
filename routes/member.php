@@ -7,7 +7,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::group([
     'prefix' => 'member', 
-    'as' => 'member.'
+    'as' => 'member.',
+    'middleware' => ['keycloak.role:member']
 ], function () {
 
     Route::get('dashboard', DashboardController::class)
