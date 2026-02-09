@@ -19,9 +19,9 @@ trait HasResourceTransformer
     }
 
     /**
-     * @return JsonResource|Model
+     * @return array<string, mixed>|Model
      */
-    protected function transformItem(Model $item): JsonResource|Model
+    protected function transformItem(Model $item): array|Model
     {
         $resourceClass = $this->resourceClass();
 
@@ -29,7 +29,7 @@ trait HasResourceTransformer
             return $item;
         }
 
-        return new $resourceClass($item);
+        return (new $resourceClass($item))->resolve();
     }
 
     /**

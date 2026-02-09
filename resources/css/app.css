@@ -2,7 +2,7 @@
 
 @import 'tw-animate-css';
 
-@import 'sonner';
+@import 'sonner/dist/styles.css';
 
 @source '../views';
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
@@ -61,6 +61,15 @@
     --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
     --color-sidebar-border: var(--sidebar-border);
     --color-sidebar-ring: var(--sidebar-ring);
+
+    --color-success: var(--success);
+    --color-success-foreground: var(--success-foreground);
+
+    --color-warning: var(--warning);
+    --color-warning-foreground: var(--warning-foreground);
+
+    --color-info: var(--info);
+    --color-info-foreground: var(--info-foreground);
 }
 
 :root {
@@ -97,6 +106,12 @@
     --sidebar-accent-foreground: oklch(0.205 0 0);
     --sidebar-border: oklch(0.922 0 0);
     --sidebar-ring: oklch(0.87 0 0);
+    --success: oklch(0.517 0.174 142.495);
+    --success-foreground: oklch(1 0 0);
+    --warning: oklch(0.768 0.189 70.08);
+    --warning-foreground: oklch(0.205 0 0);
+    --info: oklch(0.551 0.18 254.624);
+    --info-foreground: oklch(1 0 0);
 }
 
 .dark {
@@ -132,6 +147,12 @@
     --sidebar-accent-foreground: oklch(0.985 0 0);
     --sidebar-border: oklch(0.269 0 0);
     --sidebar-ring: oklch(0.439 0 0);
+    --success: oklch(0.448 0.15 142.495);
+    --success-foreground: oklch(1 0 0);
+    --warning: oklch(0.688 0.169 70.08);
+    --warning-foreground: oklch(0.205 0 0);
+    --info: oklch(0.488 0.243 264.376);
+    --info-foreground: oklch(1 0 0);
 }
 
 @layer base {

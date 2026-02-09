@@ -1,5 +1,5 @@
 import { Link } from '@inertiajs/react';
-import { LayoutGrid, Settings, Users } from 'lucide-react';
+import { Layers, LayoutGrid, Settings, Users } from 'lucide-react';
 import AppLogo from '@/components/logo/app-logo';
 import { NavFooter } from '@/components/navigation/nav-footer';
 import { NavMain } from '@/components/navigation/nav-main';
@@ -14,6 +14,8 @@ import {
     SidebarMenuItem,
 } from '@/components/ui/sidebar';
 import { useLang } from '@/hooks/use-lang';
+import { dashboard } from '@/routes/admin';
+import { index as categoryIndex } from '@/routes/admin/category';
 import type { NavItem } from '@/types';
 
 export function AdminSidebar() {
@@ -22,17 +24,22 @@ export function AdminSidebar() {
     const mainNavItems: NavItem[] = [
         {
             title: __('navigation.admin.nav.dashboard'),
-            href: '/admin/dashboard',
+            href: dashboard().url,
             icon: LayoutGrid,
         },
         {
+            title: __('navigation.admin.nav.categories'),
+            href: categoryIndex().url,
+            icon: Layers,
+        },
+        {
             title: __('navigation.admin.nav.users'),
-            href: '/admin/users',
+            href: '#',
             icon: Users,
         },
         {
             title: __('navigation.admin.nav.settings'),
-            href: '/admin/settings',
+            href: '#',
             icon: Settings,
         },
     ];
@@ -45,7 +52,7 @@ export function AdminSidebar() {
                 <SidebarMenu>
                     <SidebarMenuItem>
                         <SidebarMenuButton size="lg" asChild>
-                            <Link href="/admin/dashboard" prefetch>
+                            <Link href={dashboard().url} prefetch>
                                 <AppLogo />
                             </Link>
                         </SidebarMenuButton>

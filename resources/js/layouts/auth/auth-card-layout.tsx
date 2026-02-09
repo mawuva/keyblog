@@ -1,6 +1,6 @@
 import { Link } from '@inertiajs/react';
 import type { PropsWithChildren } from 'react';
-import AppLogoIcon from '@/components/app-logo-icon';
+import AppLogoIcon from '@/components/logo/app-logo-icon';
 import {
     Card,
     CardContent,

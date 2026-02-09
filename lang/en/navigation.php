@@ -68,6 +68,7 @@ return [
     'admin' => [
         'nav' => [
             'dashboard' => 'Dashboard',
+            'categories' => 'Categories',
             'users' => 'Users',
             'settings' => 'Settings',
         ],

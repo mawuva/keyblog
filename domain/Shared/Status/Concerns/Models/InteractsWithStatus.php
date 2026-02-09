@@ -41,7 +41,7 @@ trait InteractsWithStatus
      */
     protected static function bootInteractsWithStatus(): void
     {
-        static::creating(function ($model) {
+        static::created(function ($model) {
             if (! $model->status) {
                 $enum = $model->statusEnum();
                 $model->setStatus($enum::initial()->value);

@@ -1,5 +1,5 @@
 import { Link, usePage } from '@inertiajs/react';
-import AppLogoIcon from '@/components/app-logo-icon';
+import AppLogoIcon from '@/components/logo/app-logo-icon';
 import { home } from '@/routes';
 import type { AuthLayoutProps, SharedData } from '@/types';
 

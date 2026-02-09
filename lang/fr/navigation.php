@@ -67,6 +67,7 @@ return [
     'admin' => [
         'nav' => [
             'dashboard' => 'Tableau de bord',
+            'categories' => 'Catégories',
             'users' => 'Utilisateurs',
             'settings' => 'Paramètres',
         ],

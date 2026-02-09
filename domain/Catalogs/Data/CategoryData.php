@@ -22,7 +22,7 @@ class CategoryData extends Data
         return [
             'name' => ['required', 'string', 'max:255'],
             'description' => ['nullable', 'string'],
-            'order' => ['integer', 'default:0'],
+            'order' => ['integer'],
             'icon_type' => ['nullable', 'string', 'max:20'],
             'icon_value' => ['nullable', 'string', 'max:255'],
         ];

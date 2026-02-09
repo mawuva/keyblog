@@ -15,6 +15,8 @@ use Spatie\QueryBuilder\AllowedInclude;
 
 class CategoryController extends BaseCrudController
 {
+    protected array $with = ['statuses'];
+
     protected function modelClass(): string
     {
         return Category::class;
