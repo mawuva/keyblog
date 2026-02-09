@@ -69,6 +69,8 @@ return [
         'nav' => [
             'dashboard' => 'Dashboard',
             'categories' => 'Categories',
+            'roles' => 'Roles',
+            'permissions' => 'Permissions',
             'users' => 'Users',
             'settings' => 'Settings',
         ],

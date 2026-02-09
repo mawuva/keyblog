@@ -29,7 +29,7 @@ trait HasQueryBuilder
         return [];
     }
 
-    private function buildQuery(): QueryBuilder
+    protected function buildQuery(): QueryBuilder
     {
         return QueryBuilder::for($this->modelClass())
             ->allowedFilters($this->allowedFilters())

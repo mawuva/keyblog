@@ -44,10 +44,10 @@ class KeycloakUserRole
     protected function userHasRole($user, string $role): bool
     {
         return match ($role) {
-            'admin' => $user->isAdmin(),
+            'admin' => $user->isKeycloakAdmin(),
             'customer' => $user->isCustomer(),
             'member' => $user->isMember(),
-            default => $user->hasRole($role),
+            default => $user->hasKeycloakRole($role),
         };
     }
 

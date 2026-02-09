@@ -68,6 +68,8 @@ return [
         'nav' => [
             'dashboard' => 'Tableau de bord',
             'categories' => 'Catégories',
+            'roles' => 'Rôles',
+            'permissions' => 'Permissions',
             'users' => 'Utilisateurs',
             'settings' => 'Paramètres',
         ],

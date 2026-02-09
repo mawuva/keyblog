@@ -35,7 +35,7 @@ class AuthenticatedUserData extends Data
             email: $user->email,
             roles: $user->keycloak_roles ?? [],
             groups: $user->keycloak_groups ?? [],
-            isAdmin: $user->hasRole(KeycloakRoleEnum::ADMIN->value) || $user->isInGroup(KeycloakRoleEnum::ADMIN->value),
+            isAdmin: $user->hasKeycloakRole(KeycloakRoleEnum::ADMIN->value) || $user->isInGroup(KeycloakRoleEnum::ADMIN->value),
             isActive: $user->is_active ?? true,
             lastLoginAt: $user->last_login_at?->format('Y-m-d H:i:s'),
             lastLoginIp: $user->last_login_ip,

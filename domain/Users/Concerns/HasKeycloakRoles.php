@@ -9,20 +9,20 @@ use Domain\Users\Enums\KeycloakRoleEnum;
 trait HasKeycloakRoles
 {
     /**
-     * Check if user has specific role
+     * Check if user has specific Keycloak role
      */
-    public function hasRole(string $role): bool
+    public function hasKeycloakRole(string $role): bool
     {
         return in_array($role, $this->keycloak_roles ?? []);
     }
 
     /**
-     * Check if user has any of the specified roles
+     * Check if user has any of the specified Keycloak roles
      */
-    public function hasAnyRole(KeycloakRoleEnum ...$roles): bool
+    public function hasAnyKeycloakRole(KeycloakRoleEnum ...$roles): bool
     {
         foreach ($roles as $role) {
-            if ($this->hasRole($role->value)) {
+            if ($this->hasKeycloakRole($role->value)) {
                 return true;
             }
         }
@@ -33,9 +33,9 @@ trait HasKeycloakRoles
     /**
      * Check if user is admin
      */
-    public function isAdmin(): bool
+    public function isKeycloakAdmin(): bool
     {
-        return $this->hasAnyRole(KeycloakRoleEnum::ADMIN);
+        return $this->hasAnyKeycloakRole(KeycloakRoleEnum::ADMIN);
     }
 
     /**
@@ -43,7 +43,7 @@ trait HasKeycloakRoles
      */
     public function isCustomer(): bool
     {
-        return $this->hasAnyRole(KeycloakRoleEnum::CUSTOMER);
+        return $this->hasAnyKeycloakRole(KeycloakRoleEnum::CUSTOMER);
     }
 
     /**
@@ -51,7 +51,7 @@ trait HasKeycloakRoles
      */
     public function isMember(): bool
     {
-        return $this->hasAnyRole(KeycloakRoleEnum::MEMBER);
+        return $this->hasAnyKeycloakRole(KeycloakRoleEnum::MEMBER);
     }
 
     /**

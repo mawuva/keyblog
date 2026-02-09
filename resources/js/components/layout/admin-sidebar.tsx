@@ -1,5 +1,5 @@
 import { Link } from '@inertiajs/react';
-import { Layers, LayoutGrid, Settings, Users } from 'lucide-react';
+import { Layers, LayoutGrid, Lock, Settings, Shield, Users } from 'lucide-react';
 import AppLogo from '@/components/logo/app-logo';
 import { NavFooter } from '@/components/navigation/nav-footer';
 import { NavMain } from '@/components/navigation/nav-main';
@@ -16,6 +16,8 @@ import {
 import { useLang } from '@/hooks/use-lang';
 import { dashboard } from '@/routes/admin';
 import { index as categoryIndex } from '@/routes/admin/category';
+import { index as permissionIndex } from '@/routes/admin/permission';
+import { index as roleIndex } from '@/routes/admin/role';
 import type { NavItem } from '@/types';
 
 export function AdminSidebar() {
@@ -31,6 +33,16 @@ export function AdminSidebar() {
             title: __('navigation.admin.nav.categories'),
             href: categoryIndex().url,
             icon: Layers,
+        },
+        {
+            title: __('navigation.admin.nav.roles'),
+            href: roleIndex().url,
+            icon: Shield,
+        },
+        {
+            title: __('navigation.admin.nav.permissions'),
+            href: permissionIndex().url,
+            icon: Lock,
         },
         {
             title: __('navigation.admin.nav.users'),

@@ -40,7 +40,7 @@ class SocialiteController extends Controller
 
         Auth::login($user, true);
 
-        if ($user->isAdmin()) {
+        if ($user->isKeycloakAdmin()) {
             return to_route('admin.dashboard');
         }
 
