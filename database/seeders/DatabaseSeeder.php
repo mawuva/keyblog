@@ -20,7 +20,6 @@ class DatabaseSeeder extends Seeder
             PermissionSeeder::class,
             RoleSeeder::class,
             RolePermissionSeeder::class,
-            KeycloakRoleSeeder::class,
         ]);
 
         // Create test user
