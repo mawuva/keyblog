@@ -15,4 +15,8 @@ interface StatusEnumContract extends \BackedEnum
      * @return self[]
      */
     public function allowedTransitions(): array;
+
+    public function label(): string;
+
+    public function color(): string;
 }

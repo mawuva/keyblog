@@ -75,6 +75,24 @@ trait InteractsWithStatus
     }
 
     /**
+     * @return array{value: string, label: string, color: string}|null
+     */
+    public function statusToArray(): ?array
+    {
+        $enum = $this->currentStatusEnum();
+
+        if (! $enum) {
+            return null;
+        }
+
+        return [
+            'value' => $enum->value,
+            'label' => $enum->label(),
+            'color' => $enum->color(),
+        ];
+    }
+
+    /**
      * BONUS (ton code, version propre)
      */
     public function availableStatuses(): array
