@@ -1,9 +1,13 @@
 export type * from './auth';
 export type * from './crud';
 export type * from './head';
-export type * from './models';
 export type * from './navigation';
 export type * from './ui';
+
+// Explicit exports from entities to avoid conflicts
+export type { Category } from './entities/catalogs';
+export type { Permission, Role, GroupedPermissions } from './entities/roles';
+export type { AppUser } from './entities/users';
 
 import type { Auth } from './auth';
 

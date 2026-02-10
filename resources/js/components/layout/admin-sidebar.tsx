@@ -34,12 +34,22 @@ export function AdminSidebar() {
             ],
         },
         {
-            title: __('navigation.admin.groups.management'),
+            title: __('navigation.admin.groups.catalog_management'),
             items: [
                 {
                     title: __('navigation.admin.nav.categories'),
                     href: categoryIndex().url,
                     icon: Layers,
+                },
+            ],
+        },
+        {
+            title: __('navigation.admin.groups.rights_management'),
+            items: [
+                {
+                    title: __('navigation.admin.nav.users'),
+                    href: '#',
+                    icon: Users,
                 },
                 {
                     title: __('navigation.admin.nav.roles'),
@@ -50,11 +60,6 @@ export function AdminSidebar() {
                     title: __('navigation.admin.nav.permissions'),
                     href: permissionIndex().url,
                     icon: Lock,
-                },
-                {
-                    title: __('navigation.admin.nav.users'),
-                    href: '#',
-                    icon: Users,
                 },
             ],
         },

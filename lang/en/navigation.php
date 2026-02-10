@@ -76,7 +76,8 @@ return [
         ],
         'groups' => [
             'main' => 'Main',
-            'management' => 'Management',
+            'rights_management' => 'Rights Management',
+            'catalog_management' => 'Catalog Management',
             'system' => 'System',
         ],
     ],

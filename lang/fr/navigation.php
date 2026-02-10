@@ -75,7 +75,8 @@ return [
         ],
         'groups' => [
             'main' => 'Principal',
-            'management' => 'Gestion',
+            'rights_management' => 'Gestion des droits',
+            'catalog_management' => 'Gestion du catalogue',
             'system' => 'Système',
         ],
     ],
