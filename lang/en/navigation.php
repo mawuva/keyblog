@@ -64,6 +64,17 @@ return [
         'settings' => 'Settings',
     ],
 
+    // Command palette
+    'command_palette' => [
+        'title' => 'Command Palette',
+        'description' => 'Search for a page or command...',
+        'placeholder' => 'Type a command or search...',
+        'no_results' => 'No results found.',
+        'recent_searches' => 'Recent searches',
+        'clear_history' => 'Clear history',
+        'pages' => 'Pages',
+    ],
+
     // Admin Navigation
     'admin' => [
         'nav' => [

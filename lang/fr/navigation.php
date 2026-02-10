@@ -63,6 +63,17 @@ return [
         'settings' => 'Paramètres',
     ],
 
+    // Command palette
+    'command_palette' => [
+        'title' => 'Palette de commandes',
+        'description' => 'Rechercher une page ou une commande...',
+        'placeholder' => 'Tapez une commande ou recherchez...',
+        'no_results' => 'Aucun résultat trouvé.',
+        'recent_searches' => 'Recherches récentes',
+        'clear_history' => 'Effacer l\'historique',
+        'pages' => 'Pages',
+    ],
+
     // Admin Navigation
     'admin' => [
         'nav' => [
