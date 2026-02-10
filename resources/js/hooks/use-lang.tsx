@@ -130,5 +130,9 @@ export function useLang() {
         return trans(`actions.${key}`)
     }
 
-    return { trans, __, transFrom, transChoice, capitalize, __capitalize, transFromCapitalize, transAttr, transMsg, transCommon, transAct }
+    function transNavigation(key: string): string {
+        return trans(`navigation.${key}`)
+    }
+
+    return { trans, __, transFrom, transChoice, capitalize, __capitalize, transFromCapitalize, transAttr, transMsg, transCommon, transAct, transNavigation }
 }

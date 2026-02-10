@@ -10,7 +10,9 @@ import { useLang } from '@/hooks/use-lang';
 import { useQueryBuilder } from '@/hooks/use-query-builder';
 import AdminLayout from '@/layouts/admin/admin-layout';
 import { transAction } from '@/lib/trans';
+import { dashboard } from '@/routes/admin';
 import { create, destroy, edit, index } from '@/routes/admin/role';
+import { index as roleIndex } from '@/routes/admin/role';
 import type { ColumnDef, PaginatedData, Role, RowAction } from '@/types';
 
 interface Props {
@@ -19,7 +21,7 @@ interface Props {
 
 export default function RoleIndex({ items }: Props) {
     const { url } = usePage();
-    const { trans, transFrom, transChoice, transMsg, transCommon, transAct } = useLang();
+    const { trans, transFrom, transChoice, transMsg, transCommon, transAct, transNavigation } = useLang();
     const t = (key: string) => transFrom('pages/admin/roles', `role.${key}`);
     const ta = (a: string) => transAction(trans, transChoice, a, 'role');
     const [deleteTarget, setDeleteTarget] = useState<Role | null>(null);
@@ -57,8 +59,13 @@ export default function RoleIndex({ items }: Props) {
         },
     ];
 
+    const breadcrumbs = [
+        { title: transNavigation('nav.dashboard'), href: dashboard().url },
+        { title: transNavigation('admin.nav.roles'), href: roleIndex().url },
+    ];
+
     return (
-        <AdminLayout headTags={{ title: t('title') }}>
+        <AdminLayout headTags={{ title: t('title') }} breadcrumbs={breadcrumbs}>
             <div className="flex flex-col gap-6 p-4">
                 <DataTableHeader
                     title={t('title')}

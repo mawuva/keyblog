@@ -6,7 +6,9 @@ import DataTablePagination from '@/components/crud/data-table-pagination';
 import { useLang } from '@/hooks/use-lang';
 import { useQueryBuilder } from '@/hooks/use-query-builder';
 import AdminLayout from '@/layouts/admin/admin-layout';
+import { dashboard } from '@/routes/admin';
 import { index } from '@/routes/admin/permission';
+import { index as permissionIndex } from '@/routes/admin/permission';
 import type { ColumnDef, PaginatedData, Permission } from '@/types';
 
 interface Props {
@@ -15,7 +17,7 @@ interface Props {
 
 export default function PermissionIndex({ items }: Props) {
     const { url } = usePage();
-    const { transFrom, transChoice, transCommon } = useLang();
+    const { transFrom, transChoice, transCommon, transNavigation } = useLang();
     const t = (key: string) => transFrom('pages/admin/roles', `permission.${key}`);
 
     const params = useMemo(() => {
@@ -36,8 +38,13 @@ export default function PermissionIndex({ items }: Props) {
         { key: 'name', label: t('columns.name'), sortable: true },
     ];
 
+    const breadcrumbs = [
+        { title: transNavigation('nav.dashboard'), href: dashboard().url },
+        { title: transNavigation('admin.nav.permissions'), href: permissionIndex().url },
+    ];
+
     return (
-        <AdminLayout headTags={{ title: t('title') }}>
+        <AdminLayout headTags={{ title: t('title') }} breadcrumbs={breadcrumbs}>
             <div className="flex flex-col gap-6 p-4">
                 <div>
                     <h1 className="text-2xl font-bold tracking-tight">{t('title')}</h1>

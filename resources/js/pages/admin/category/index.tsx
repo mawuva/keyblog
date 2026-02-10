@@ -14,7 +14,9 @@ import { useLang } from '@/hooks/use-lang';
 import { useQueryBuilder } from '@/hooks/use-query-builder';
 import AdminLayout from '@/layouts/admin/admin-layout';
 import { transAction } from '@/lib/trans';
+import { dashboard } from '@/routes/admin';
 import { changeStatus, destroy, forceDelete, index, restore } from '@/routes/admin/category';
+import { index as categoryIndex } from '@/routes/admin/category';
 import type { Category, ColumnDef, PaginatedData, RowAction, StatusData } from '@/types';
 import CategoryFormDialog from './category-form-dialog';
 
@@ -25,7 +27,7 @@ interface Props {
 
 export default function CategoryIndex({ items, statusOptions = [] }: Props) {
     const { url } = usePage();
-    const { trans, transFrom, transChoice, transMsg, transCommon, transAct } = useLang();
+    const { trans, transFrom, transChoice, transMsg, transCommon, transAct, transNavigation } = useLang();
     const t = (key: string) => transFrom('pages/admin/catalogs', `category.${key}`);
     const ta = (a: string) => transAction(trans, transChoice, a, 'category');
 
@@ -115,8 +117,13 @@ export default function CategoryIndex({ items, statusOptions = [] }: Props) {
         setEditTarget(null);
     };
 
+    const breadcrumbs = [
+        { title: transNavigation('nav.dashboard'), href: dashboard().url },
+        { title: transNavigation('admin.nav.categories'), href: categoryIndex().url },
+    ];
+
     return (
-        <AdminLayout headTags={{ title: t('title') }}>
+        <AdminLayout headTags={{ title: t('title') }} breadcrumbs={breadcrumbs}>
             <div className="flex flex-col gap-6 p-4">
                 <div className="flex items-center justify-between">
                     <div>
