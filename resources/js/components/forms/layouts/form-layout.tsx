@@ -1,6 +1,5 @@
 import type { ReactNode } from 'react';
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from '@/components/ui/breadcrumb';
-import { useLang } from '@/hooks/use-lang';
 import type { BreadcrumbItem as BreadcrumbItemType } from '@/types';
 
 interface Props {
@@ -12,7 +11,6 @@ interface Props {
 }
 
 export default function FormLayout({ title, description, breadcrumbs, children, submitButton }: Props) {
-    const { __ } = useLang();
 
     return (
         <div className="flex flex-col h-full min-h-screen">
