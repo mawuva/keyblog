@@ -27,6 +27,7 @@
         "spatie/laravel-permission": "^6.24",
         "spatie/laravel-query-builder": "^6.4",
         "spatie/laravel-sluggable": "^3.7",
+        "spatie/laravel-translatable": "^6.12",
         "ymigval/laravel-model-cache": "^1.1"
     },
     "require-dev": {

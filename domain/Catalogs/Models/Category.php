@@ -6,9 +6,12 @@ namespace Domain\Catalogs\Models;
 
 use Spatie\Sluggable\SlugOptions;
 use Domain\Catalogs\Enums\CatalogEnum;
+use Spatie\Translatable\HasTranslations;
 
 class Category extends CatalogsBaseModel
 {
+    use HasTranslations;
+
     protected $fillable = [
         'name',
         'slug',
@@ -17,6 +20,8 @@ class Category extends CatalogsBaseModel
         'icon_type',
         'icon_value',
     ];
+
+    public array $translatable = ['name', 'description'];
 
     protected $casts = [
         'order' => 'integer',
