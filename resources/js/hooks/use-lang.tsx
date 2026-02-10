@@ -114,5 +114,21 @@ export function useLang() {
         return capitalize(transFrom(namespace, key, replaces));
     }
 
-    return { trans, __, transFrom, transChoice, capitalize, __capitalize, transFromCapitalize }
+    function transAttr(key: string): string {
+        return capitalize(trans(`validation.attributes.${key}`))
+    }
+
+    function transMsg(key: string, replaces: Replaces = {}): string {
+        return trans(`messages.${key}`, replaces)
+    }
+
+    function transCommon(key: string, replaces: Replaces = {}): string {
+        return trans(`common.${key}`, replaces)
+    }
+
+    function transAct(key: string): string {
+        return trans(`actions.${key}`)
+    }
+
+    return { trans, __, transFrom, transChoice, capitalize, __capitalize, transFromCapitalize, transAttr, transMsg, transCommon, transAct }
 }

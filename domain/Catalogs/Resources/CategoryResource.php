@@ -25,6 +25,7 @@ class CategoryResource extends JsonResource
             'status' => $this->whenLoaded('statuses', fn () => $this->statusToArray()),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
+            'deleted_at' => $this->deleted_at,
             'created_at_formatted' => $this->created_at_formatted,
         ];
     }

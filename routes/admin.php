@@ -40,6 +40,8 @@ Route::group([
                 Route::put('/{category}', 'update')->name('update');
                 Route::delete('/{category}', 'destroy')->name('destroy');
                 Route::patch('/{category}/status', 'changeStatus')->name('change-status');
+                Route::post('/{category}/restore', 'restore')->name('restore');
+                Route::delete('/{category}/force-delete', 'forceDelete')->name('force-delete');
             });
 
         // Permissions (index only)

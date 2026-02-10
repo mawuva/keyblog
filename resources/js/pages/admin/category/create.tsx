@@ -2,6 +2,7 @@ import { useForm } from '@inertiajs/react';
 import type { FormEvent } from 'react';
 import FormInput from '@/components/forms/form-input';
 import FormSubmitButton from '@/components/forms/form-submit-button';
+import FormTextarea from '@/components/forms/form-textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useLang } from '@/hooks/use-lang';
 import AdminLayout from '@/layouts/admin/admin-layout';
@@ -9,8 +10,8 @@ import { create, index, store } from '@/routes/admin/category';
 import type { BreadcrumbItem } from '@/types';
 
 export default function CategoryCreate() {
-    const { transFrom } = useLang();
-    const t = (key: string) => transFrom('pages/admin/category', key);
+    const { transFrom, transAttr } = useLang();
+    const t = (key: string) => transFrom('pages/admin/catalogs', `category.${key}`);
 
     const breadcrumbs: BreadcrumbItem[] = [
         { title: t('title'), href: index().url },
@@ -40,7 +41,7 @@ export default function CategoryCreate() {
                     <CardContent>
                         <form onSubmit={submit} className="space-y-4">
                             <FormInput
-                                label={t('fields.name')}
+                                label={transAttr('name')}
                                 name="name"
                                 required
                                 value={form.data.name}
@@ -48,17 +49,18 @@ export default function CategoryCreate() {
                                 error={form.errors.name}
                             />
 
-                            <FormInput
-                                label={t('fields.description')}
+                            <FormTextarea
+                                label={transAttr('description')}
                                 name="description"
                                 value={form.data.description}
                                 onChange={(e) => form.setData('description', e.target.value)}
                                 error={form.errors.description}
                                 optional
+                                maxLength={150}
                             />
 
                             <FormInput
-                                label={t('fields.order')}
+                                label={transAttr('order')}
                                 name="order"
                                 type="number"
                                 value={String(form.data.order)}
@@ -67,7 +69,7 @@ export default function CategoryCreate() {
                             />
 
                             <FormInput
-                                label={t('fields.icon_type')}
+                                label={transAttr('icon_type')}
                                 name="icon_type"
                                 value={form.data.icon_type}
                                 onChange={(e) => form.setData('icon_type', e.target.value)}
@@ -76,7 +78,7 @@ export default function CategoryCreate() {
                             />
 
                             <FormInput
-                                label={t('fields.icon_value')}
+                                label={transAttr('icon_value')}
                                 name="icon_value"
                                 value={form.data.icon_value}
                                 onChange={(e) => form.setData('icon_value', e.target.value)}

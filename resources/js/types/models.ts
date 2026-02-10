@@ -11,6 +11,7 @@ export type Category = {
     status: StatusData | null;
     created_at: string;
     updated_at: string;
+    deleted_at: string | null;
     created_at_formatted: string;
 };
 

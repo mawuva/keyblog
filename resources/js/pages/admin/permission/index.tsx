@@ -7,7 +7,7 @@ import { useLang } from '@/hooks/use-lang';
 import { useQueryBuilder } from '@/hooks/use-query-builder';
 import AdminLayout from '@/layouts/admin/admin-layout';
 import { index } from '@/routes/admin/permission';
-import type { ColumnDef, FilterConfig, PaginatedData, Permission } from '@/types';
+import type { ColumnDef, PaginatedData, Permission } from '@/types';
 
 interface Props {
     items: PaginatedData<Permission>;
@@ -15,8 +15,8 @@ interface Props {
 
 export default function PermissionIndex({ items }: Props) {
     const { url } = usePage();
-    const { transFrom } = useLang();
-    const t = (key: string) => transFrom('pages/admin/permission', key);
+    const { transFrom, transChoice, transCommon } = useLang();
+    const t = (key: string) => transFrom('pages/admin/roles', `permission.${key}`);
 
     const params = useMemo(() => {
         const searchParams = new URLSearchParams(url.split('?')[1] ?? '');
@@ -27,17 +27,13 @@ export default function PermissionIndex({ items }: Props) {
         };
     }, [url]);
 
-    const { setSearch, setSort, resetFilters, currentSort, currentSearch, currentFilters } = useQueryBuilder(
+    const { setSearch, setSort, resetFilters, currentSort, currentSearch } = useQueryBuilder(
         index().url,
         params,
     );
 
     const columns: ColumnDef<Permission>[] = [
         { key: 'name', label: t('columns.name'), sortable: true },
-    ];
-
-    const filters: FilterConfig[] = [
-        { type: 'search', name: 'name', placeholder: t('filters.search') },
     ];
 
     return (
@@ -49,12 +45,11 @@ export default function PermissionIndex({ items }: Props) {
                 </div>
 
                 <DataTableFilters
-                    filters={filters}
-                    currentSearch={currentSearch}
-                    currentFilters={currentFilters}
+                    searchValue={currentSearch}
                     onSearch={setSearch}
-                    onFilter={() => {}}
+                    searchPlaceholder={transCommon('filters.search')}
                     onReset={resetFilters}
+                    resetLabel={transCommon('filters.reset')}
                 />
 
                 <DataTable
@@ -64,7 +59,7 @@ export default function PermissionIndex({ items }: Props) {
                     currentSort={currentSort}
                     onSort={setSort}
                     keyExtractor={(item) => String(item.id)}
-                    emptyMessage={t('empty')}
+                    emptyMessage={transCommon('empty', { entity: transChoice('common.entity.permission', 1) })}
                 />
 
                 <DataTablePagination data={items} />

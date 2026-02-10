@@ -13,6 +13,11 @@ export type NavItem = {
     isActive?: boolean;
 };
 
+export type NavGroup = {
+    title: string;
+    items: NavItem[];
+};
+
 export interface DropdownItem extends Omit<NavItem, 'href' | 'icon'> {
     key: string;
     action: () => void;

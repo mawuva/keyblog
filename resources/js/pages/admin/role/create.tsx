@@ -3,7 +3,7 @@ import type { FormEvent } from 'react';
 import { useState } from 'react';
 import FormInput from '@/components/forms/form-input';
 import FormSubmitButton from '@/components/forms/form-submit-button';
-import FormLayout from '@/components/layouts/form-layout';
+import FormLayout from '@/components/forms/layouts/form-layout';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
@@ -17,8 +17,8 @@ interface Props {
 }
 
 export default function RoleCreate({ permissions }: Props) {
-    const { transFrom } = useLang();
-    const t = (key: string) => transFrom('pages/admin/role', key);
+    const { transFrom, transAttr } = useLang();
+    const t = (key: string) => transFrom('pages/admin/roles', `role.${key}`);
 
     const breadcrumbs: BreadcrumbItem[] = [
         { title: t('title'), href: index().url },
@@ -100,7 +100,7 @@ export default function RoleCreate({ permissions }: Props) {
                         </CardHeader>
                         <CardContent className="space-y-4">
                             <FormInput
-                                label={t('fields.name')}
+                                label={transAttr('name')}
                                 name="name"
                                 required
                                 value={form.data.name}

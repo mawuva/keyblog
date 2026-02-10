@@ -46,9 +46,8 @@ class HandleInertiaRequests extends Middleware
             'messages',
             'navigation',
             'pages/auth',
-            'pages/admin/category',
-            'pages/admin/role',
-            'pages/admin/permission',
+            'pages/admin/catalogs',
+            'pages/admin/roles',
         ]);
         
         return [

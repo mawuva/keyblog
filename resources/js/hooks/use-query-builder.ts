@@ -10,13 +10,13 @@ type QueryParams = {
     include?: string[];
 };
 
-export function useQueryBuilder(baseUrl: string, currentParams: QueryParams = {}) {
+export function useQueryBuilder(baseUrl: string, currentParams: QueryParams = {}, searchFilterName: string = 'name') {
     const buildUrl = useCallback(
         (params: QueryParams) => {
             const q = query(baseUrl);
 
             if (params.search) {
-                q.filter('search', params.search);
+                q.filter(searchFilterName, params.search);
             }
 
             if (params.filters) {
@@ -41,7 +41,7 @@ export function useQueryBuilder(baseUrl: string, currentParams: QueryParams = {}
 
             return q.build();
         },
-        [baseUrl],
+        [baseUrl, searchFilterName],
     );
 
     const navigate = useCallback(

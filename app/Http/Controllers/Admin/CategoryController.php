@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Crud\BaseCrudController;
 use App\Http\Controllers\Crud\Concerns\HandlesCrudStatusChange;
+use App\Http\Controllers\Crud\Concerns\HandlesSoftDeletes;
 use Domain\Catalogs\Data\CategoryData;
 use Domain\Catalogs\Enums\CatalogEnum;
 use Domain\Catalogs\Models\Category;
@@ -18,7 +19,7 @@ use Spatie\QueryBuilder\AllowedInclude;
 
 class CategoryController extends BaseCrudController
 {
-    use HandlesCrudStatusChange;
+    use HandlesCrudStatusChange, HandlesSoftDeletes;
 
     protected array $with = ['statuses'];
 

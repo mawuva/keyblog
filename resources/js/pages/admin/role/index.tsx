@@ -5,12 +5,13 @@ import DataTable from '@/components/crud/data-table';
 import DataTableFilters from '@/components/crud/data-table-filters';
 import DataTableHeader from '@/components/crud/data-table-header';
 import DataTablePagination from '@/components/crud/data-table-pagination';
-import DeleteDialog from '@/components/crud/delete-dialog';
+import DeleteDialog from '@/components/dialogs/delete-dialog';
 import { useLang } from '@/hooks/use-lang';
 import { useQueryBuilder } from '@/hooks/use-query-builder';
 import AdminLayout from '@/layouts/admin/admin-layout';
+import { transAction } from '@/lib/trans';
 import { create, destroy, edit, index } from '@/routes/admin/role';
-import type { ColumnDef, FilterConfig, PaginatedData, Role, RowAction } from '@/types';
+import type { ColumnDef, PaginatedData, Role, RowAction } from '@/types';
 
 interface Props {
     items: PaginatedData<Role>;
@@ -18,8 +19,9 @@ interface Props {
 
 export default function RoleIndex({ items }: Props) {
     const { url } = usePage();
-    const { transFrom } = useLang();
-    const t = (key: string) => transFrom('pages/admin/role', key);
+    const { trans, transFrom, transChoice, transMsg, transCommon, transAct } = useLang();
+    const t = (key: string) => transFrom('pages/admin/roles', `role.${key}`);
+    const ta = (a: string) => transAction(trans, transChoice, a, 'role');
     const [deleteTarget, setDeleteTarget] = useState<Role | null>(null);
 
     const params = useMemo(() => {
@@ -31,7 +33,7 @@ export default function RoleIndex({ items }: Props) {
         };
     }, [url]);
 
-    const { setSearch, setSort, resetFilters, currentSort, currentSearch, currentFilters } = useQueryBuilder(
+    const { setSearch, setSort, resetFilters, currentSort, currentSearch } = useQueryBuilder(
         index().url,
         params,
     );
@@ -43,20 +45,16 @@ export default function RoleIndex({ items }: Props) {
 
     const actions: RowAction<Role>[] = [
         {
-            label: t('actions.edit'),
+            label: transAct('edit'),
             icon: <Pencil className="size-4" />,
             href: (item) => edit.url(item.id),
         },
         {
-            label: t('actions.delete'),
+            label: transAct('delete'),
             icon: <Trash2 className="size-4" />,
             onClick: (item) => setDeleteTarget(item),
             variant: 'destructive',
         },
-    ];
-
-    const filters: FilterConfig[] = [
-        { type: 'search', name: 'name', placeholder: t('filters.search') },
     ];
 
     return (
@@ -66,16 +64,15 @@ export default function RoleIndex({ items }: Props) {
                     title={t('title')}
                     description={t('description')}
                     createRoute={create().url}
-                    createLabel={t('actions.add')}
+                    createLabel={ta('add')}
                 />
 
                 <DataTableFilters
-                    filters={filters}
-                    currentSearch={currentSearch}
-                    currentFilters={currentFilters}
+                    searchValue={currentSearch}
                     onSearch={setSearch}
-                    onFilter={() => {}}
+                    searchPlaceholder={transCommon('filters.search')}
                     onReset={resetFilters}
+                    resetLabel={transCommon('filters.reset')}
                 />
 
                 <DataTable
@@ -85,7 +82,7 @@ export default function RoleIndex({ items }: Props) {
                     currentSort={currentSort}
                     onSort={setSort}
                     keyExtractor={(item) => String(item.id)}
-                    emptyMessage={t('empty')}
+                    emptyMessage={transCommon('empty', { entity: transChoice('common.entity.role', 1) })}
                 />
 
                 <DataTablePagination data={items} />
@@ -94,10 +91,10 @@ export default function RoleIndex({ items }: Props) {
                     open={!!deleteTarget}
                     onClose={() => setDeleteTarget(null)}
                     deleteUrl={deleteTarget ? destroy.url(deleteTarget.id) : ''}
-                    title={t('delete.title')}
-                    description={t('delete.description')}
-                    cancelLabel={t('delete.cancel')}
-                    confirmLabel={t('delete.confirm')}
+                    title={transMsg('confirm.delete.title')}
+                    description={transMsg('confirm.delete.description')}
+                    cancelLabel={transAct('cancel')}
+                    confirmLabel={transAct('delete')}
                 />
             </div>
         </AdminLayout>
