@@ -40,4 +40,22 @@ return [
         'overdue' => 'En retard',
         'refunded' => 'Remboursé',
     ],
+
+    'filters' => [
+        'search' => 'Rechercher...',
+        'all_statuses' => 'Tous les statuts',
+        'without_trashed' => 'Sans corbeille',
+        'with_trashed' => 'Avec corbeille',
+        'only_trashed' => 'Corbeille uniquement',
+        'reset' => 'Réinitialiser',
+    ],
+
+    'empty' => 'Aucun(e) :entity trouvé(e).',
+
+    'entity' => [
+        'category' => 'catégorie|catégories',
+        'role' => 'rôle|rôles',
+        'permission' => 'permission|permissions',
+        'user' => 'utilisateur|utilisateurs',
+    ],
 ];

@@ -73,5 +73,10 @@ return [
             'users' => 'Utilisateurs',
             'settings' => 'Paramètres',
         ],
+        'groups' => [
+            'main' => 'Principal',
+            'management' => 'Gestion',
+            'system' => 'Système',
+        ],
     ],
 ];

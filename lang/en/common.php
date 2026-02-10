@@ -17,4 +17,22 @@ return [
         'next' => 'Next &raquo;',
         'previous' => '&laquo; Previous',
     ],
+
+    'filters' => [
+        'search' => 'Search...',
+        'all_statuses' => 'All statuses',
+        'without_trashed' => 'Without trashed',
+        'with_trashed' => 'With trashed',
+        'only_trashed' => 'Trashed only',
+        'reset' => 'Reset',
+    ],
+
+    'empty' => 'No :entity found.',
+
+    'entity' => [
+        'category' => 'category|categories',
+        'role' => 'role|roles',
+        'permission' => 'permission|permissions',
+        'user' => 'user|users',
+    ],
 ];

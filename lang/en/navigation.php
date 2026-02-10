@@ -74,5 +74,10 @@ return [
             'users' => 'Users',
             'settings' => 'Settings',
         ],
+        'groups' => [
+            'main' => 'Main',
+            'management' => 'Management',
+            'system' => 'System',
+        ],
     ],
 ];

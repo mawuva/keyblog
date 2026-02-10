@@ -67,6 +67,8 @@ return [
         'import'    => 'Import :name',
         'new'       => 'New :name',
         'restore'   => 'Restore :name',
+        'force_delete' => 'Permanently delete :name',
+        'change_status' => 'Change status of :name',
         'save'      => 'Save :name',
         'search'    => 'Search :name',
         'show'      => 'Show :name',

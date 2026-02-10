@@ -45,7 +45,22 @@ return [
     ],
 
     'confirm' => [
-        'delete' => 'Êtes-vous sûr de vouloir supprimer cet élément ?',
-        'delete.image' => 'Êtes-vous sûr de vouloir supprimer cette image ? Cette action est irréversible.',
+        'delete' => [
+            'title' => 'Confirmer la suppression',
+            'description' => 'Cette action est irréversible. Voulez-vous vraiment supprimer cet élément ?',
+        ],
+        'force_delete' => [
+            'title' => 'Suppression définitive',
+            'description' => 'Cet élément sera supprimé définitivement et ne pourra plus être restauré.',
+        ],
+        'restore' => [
+            'title' => 'Confirmer la restauration',
+            'description' => 'Voulez-vous vraiment restaurer cet élément ?',
+        ],
+        'status_change' => [
+            'title' => 'Changer le statut',
+            'description' => 'Sélectionnez le nouveau statut.',
+        ],
+        'delete_image' => 'Êtes-vous sûr de vouloir supprimer cette image ? Cette action est irréversible.',
     ],
 ];

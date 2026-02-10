@@ -45,7 +45,22 @@ return [
     ],
 
     'confirm' => [
-        'delete' => 'Are you sure you want to delete this item?',
-        'delete.image' => 'Are you sure you want to delete this image? This action is irreversible.',
+        'delete' => [
+            'title' => 'Confirm deletion',
+            'description' => 'This action is irreversible. Are you sure you want to delete this item?',
+        ],
+        'force_delete' => [
+            'title' => 'Permanent deletion',
+            'description' => 'This item will be permanently deleted and cannot be restored.',
+        ],
+        'restore' => [
+            'title' => 'Confirm restoration',
+            'description' => 'Are you sure you want to restore this item?',
+        ],
+        'status_change' => [
+            'title' => 'Change status',
+            'description' => 'Select the new status.',
+        ],
+        'delete_image' => 'Are you sure you want to delete this image? This action is irreversible.',
     ],
 ];
