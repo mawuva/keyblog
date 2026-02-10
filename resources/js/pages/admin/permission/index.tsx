@@ -3,6 +3,7 @@ import { useMemo } from 'react';
 import DataTable from '@/components/crud/data-table';
 import DataTableFilters from '@/components/crud/data-table-filters';
 import DataTablePagination from '@/components/crud/data-table-pagination';
+import { Card } from '@/components/ui/card';
 import { useLang } from '@/hooks/use-lang';
 import { useQueryBuilder } from '@/hooks/use-query-builder';
 import AdminLayout from '@/layouts/admin/admin-layout';
@@ -59,17 +60,19 @@ export default function PermissionIndex({ items }: Props) {
                     resetLabel={transCommon('filters.reset')}
                 />
 
-                <DataTable
-                    columns={columns}
-                    data={items.data}
-                    actions={[]}
-                    currentSort={currentSort}
-                    onSort={setSort}
-                    keyExtractor={(item) => String(item.id)}
-                    emptyMessage={transCommon('empty', { entity: transChoice('common.entity.permission', 1) })}
-                />
+                <Card className="p-3">
+                    <DataTable
+                        columns={columns}
+                        data={items.data}
+                        actions={[]}
+                        currentSort={currentSort}
+                        onSort={setSort}
+                        keyExtractor={(item) => String(item.id)}
+                        emptyMessage={transCommon('empty', { entity: transChoice('common.entity.permission', 1) })}
+                    />
 
-                <DataTablePagination data={items} />
+                    <DataTablePagination data={items} />
+                </Card>
             </div>
         </AdminLayout>
     );

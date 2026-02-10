@@ -10,6 +10,7 @@ import RestoreDialog from '@/components/dialogs/restore-dialog';
 import StatusChangeDialog from '@/components/dialogs/status-change-dialog';
 import { StatusFilter, TrashedFilter } from '@/components/filters';
 import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
 import { useLang } from '@/hooks/use-lang';
 import { useQueryBuilder } from '@/hooks/use-query-builder';
 import AdminLayout from '@/layouts/admin/admin-layout';
@@ -159,17 +160,19 @@ export default function CategoryIndex({ items, statusOptions = [] }: Props) {
                     />
                 </DataTableFilters>
 
-                <DataTable
-                    columns={columns}
-                    data={items.data}
-                    actions={actions}
-                    currentSort={currentSort}
-                    onSort={setSort}
-                    keyExtractor={(item) => item.id}
-                    emptyMessage={transCommon('empty', { entity: transChoice('common.entity.category', 1) })}
-                />
+                <Card className="p-3">
+                    <DataTable
+                        columns={columns}
+                        data={items.data}
+                        actions={actions}
+                        currentSort={currentSort}
+                        onSort={setSort}
+                        keyExtractor={(item) => item.id}
+                        emptyMessage={transCommon('empty', { entity: transChoice('common.entity.category', 1) })}
+                    />
 
-                <DataTablePagination data={items} />
+                    <DataTablePagination data={items} />
+                </Card>
 
                 <CategoryFormDialog
                     open={formOpen}

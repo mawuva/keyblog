@@ -5,13 +5,12 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Crud\Concerns;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 trait HasResourceTransformer
 {
     /**
-     * @return class-string<JsonResource>|null
+     * @return class-string<\Illuminate\Http\Resources\Json\JsonResource>|null
      */
     protected function resourceClass(): ?string
     {
@@ -33,9 +32,9 @@ trait HasResourceTransformer
     }
 
     /**
-     * @return JsonResource|LengthAwarePaginator
+     * @return LengthAwarePaginator
      */
-    protected function transformCollection(LengthAwarePaginator $items): JsonResource|LengthAwarePaginator
+    protected function transformCollection(LengthAwarePaginator $items): LengthAwarePaginator
     {
         $resourceClass = $this->resourceClass();
 
@@ -43,6 +42,8 @@ trait HasResourceTransformer
             return $items;
         }
 
-        return $resourceClass::collection($items);
+        $items->through(fn (Model $item) => (new $resourceClass($item))->resolve());
+
+        return $items;
     }
 }

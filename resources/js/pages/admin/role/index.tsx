@@ -6,6 +6,7 @@ import DataTableFilters from '@/components/crud/data-table-filters';
 import DataTableHeader from '@/components/crud/data-table-header';
 import DataTablePagination from '@/components/crud/data-table-pagination';
 import DeleteDialog from '@/components/dialogs/delete-dialog';
+import { Card } from '@/components/ui/card';
 import { useLang } from '@/hooks/use-lang';
 import { useQueryBuilder } from '@/hooks/use-query-builder';
 import AdminLayout from '@/layouts/admin/admin-layout';
@@ -82,17 +83,19 @@ export default function RoleIndex({ items }: Props) {
                     resetLabel={transCommon('filters.reset')}
                 />
 
-                <DataTable
-                    columns={columns}
-                    data={items.data}
-                    actions={actions}
-                    currentSort={currentSort}
-                    onSort={setSort}
-                    keyExtractor={(item) => String(item.id)}
-                    emptyMessage={transCommon('empty', { entity: transChoice('common.entity.role', 1) })}
-                />
+                <Card className="p-3">
+                    <DataTable
+                        columns={columns}
+                        data={items.data}
+                        actions={actions}
+                        currentSort={currentSort}
+                        onSort={setSort}
+                        keyExtractor={(item) => String(item.id)}
+                        emptyMessage={transCommon('empty', { entity: transChoice('common.entity.role', 1) })}
+                    />
 
-                <DataTablePagination data={items} />
+                    <DataTablePagination data={items} />
+                </Card>
 
                 <DeleteDialog
                     open={!!deleteTarget}
