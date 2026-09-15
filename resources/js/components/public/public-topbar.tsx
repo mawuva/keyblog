@@ -20,13 +20,13 @@ export function PublicTopbar() {
                         </Link>
                         <Link
                             href={login().url}
-                            className="text-secondary-foreground/90 hover:text-secondary-foreground transition-colors"
+                            className="hidden text-secondary-foreground/90 hover:text-secondary-foreground transition-colors md:inline"
                         >
                             Connexion
                         </Link>
                         <a
                             href="/admin/login"
-                            className="text-secondary-foreground/90 hover:text-secondary-foreground transition-colors"
+                            className="hidden text-secondary-foreground/90 hover:text-secondary-foreground transition-colors md:inline"
                         >
                             Admin
                         </a>

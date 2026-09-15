@@ -9,22 +9,23 @@ enum PermissionAction: string
     case READ = 'read';
     case UPDATE = 'update';
     case DELETE = 'delete';
-    
+
     // Soft Delete Actions
     case FORCE_DELETE = 'force_delete';
     case RESTORE = 'restore';
-    
+
     // Management Actions
     case MANAGE = 'manage';
     case VIEW = 'view';
     case LIST = 'list';
+    case ACCESS = 'access';
 
     /**
      * Get all available actions.
      */
     public static function all(): array
     {
-        return array_map(fn($case) => $case->value, self::cases());
+        return array_map(fn ($case) => $case->value, self::cases());
     }
 
     /**

@@ -3,29 +3,32 @@
 namespace Domain\Users\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Spatie\Permission\Traits\HasRoles;
-use Illuminate\Notifications\Notifiable;
-use Domain\Users\Concerns\HasKeycloakRoles;
-use Laravel\Fortify\TwoFactorAuthenticatable;
 use App\Support\Models\Concerns\HasModelUtils;
 use App\Support\Models\Concerns\HasUuidManager;
-use YMigVal\LaravelModelCache\HasCachedQueries;
-use YMigVal\LaravelModelCache\ModelRelationships;
+use Database\Factories\UserFactory;
+use Domain\Roles\Enums\PermissionAction;
+use Domain\Roles\Enums\PermissionEntity;
+use Domain\Users\Concerns\HasKeycloakRoles;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Fortify\TwoFactorAuthenticatable;
+use Spatie\Permission\Traits\HasRoles;
+use YMigVal\LaravelModelCache\HasCachedQueries;
+use YMigVal\LaravelModelCache\ModelRelationships;
 
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, 
-        Notifiable, 
-        TwoFactorAuthenticatable,
-        HasUuidManager,
-        HasModelUtils,
-        HasCachedQueries,
-        ModelRelationships,
+    use HasCachedQueries,
+        HasFactory,
         HasKeycloakRoles,
-        HasRoles;
+        HasModelUtils,
+        HasRoles,
+        HasUuidManager,
+        ModelRelationships,
+        Notifiable,
+        TwoFactorAuthenticatable;
 
     /**
      * The attributes that are mass assignable.
@@ -71,5 +74,22 @@ class User extends Authenticatable
             'last_login_at' => 'datetime',
             'is_active' => 'boolean',
         ];
+    }
+
+    /**
+     * Create a new factory instance for the model.
+     */
+    protected static function newFactory(): UserFactory
+    {
+        return UserFactory::new();
+    }
+
+    /**
+     * Check if the user is allowed to reach the admin area.
+     */
+    public function canAccessAdmin(): bool
+    {
+        return $this->can(PermissionEntity::ADMIN->value.'.'.PermissionAction::ACCESS->value)
+            || $this->isKeycloakAdmin();
     }
 }
