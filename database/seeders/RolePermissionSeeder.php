@@ -23,22 +23,23 @@ class RolePermissionSeeder extends Seeder
 
         foreach ($rolePermissions as $roleName => $permissions) {
             $role = Role::where('name', $roleName)->first();
-            
-            if (!$role) {
+
+            if (! $role) {
                 $this->command->error("Role '{$roleName}' not found!");
+
                 continue;
             }
 
             foreach ($permissions as $permissionName) {
                 $permission = Permission::where('name', $permissionName)->first();
-                
+
                 if ($permission && $role) {
                     $role->givePermissionTo($permission);
                 } else {
-                    if (!$permission) {
+                    if (! $permission) {
                         $this->command->warn("Permission '{$permissionName}' not found for role '{$roleName}'");
                     }
-                    if (!$role) {
+                    if (! $role) {
                         $this->command->warn("Role '{$roleName}' not found");
                     }
                 }
@@ -61,15 +62,16 @@ class RolePermissionSeeder extends Seeder
             AppRole::ADMIN->value => [
                 // User management
                 'users.*',
-                
+
                 // Content management
                 'posts.*',
                 'categories.*',
                 'tags.*',
                 'comments.*',
                 'media.*',
-                
+
                 // Admin access
+                'admin.access',
                 'admin.manage',
                 'admin.view',
                 'settings.*',
@@ -78,7 +80,7 @@ class RolePermissionSeeder extends Seeder
                 'analytics.manage',
                 'logs.view',
                 'logs.read',
-                
+
                 // Role management (but not system)
                 'roles.*',
                 'permissions.read',
@@ -94,7 +96,7 @@ class RolePermissionSeeder extends Seeder
                 'users.list',
                 'users.update.own',
                 'users.delete.own',
-                
+
                 // Content management
                 'posts.*',
                 'categories.read',
@@ -105,8 +107,9 @@ class RolePermissionSeeder extends Seeder
                 'tags.list',
                 'comments.*',
                 'media.*',
-                
+
                 // Basic admin access
+                'admin.access',
                 'admin.view',
                 'analytics.view',
                 'analytics.read',
@@ -124,13 +127,14 @@ class RolePermissionSeeder extends Seeder
                 'tags.list',
                 'comments.*',
                 'media.*',
-                
+
                 // Limited user access
                 'users.read',
                 'users.view',
                 'users.list',
-                
+
                 // Basic admin access
+                'admin.access',
                 'admin.view',
                 'analytics.view',
                 'analytics.read',
@@ -148,7 +152,7 @@ class RolePermissionSeeder extends Seeder
                 'posts.restore',
                 'posts.manage',
                 'comments.*',
-                
+
                 // Categories and tags (read-only)
                 'categories.read',
                 'categories.view',
@@ -156,12 +160,12 @@ class RolePermissionSeeder extends Seeder
                 'tags.read',
                 'tags.view',
                 'tags.list',
-                
+
                 // Media (read-only)
                 'media.read',
                 'media.view',
                 'media.list',
-                
+
                 // Users (read-only)
                 'users.read',
                 'users.view',
@@ -179,7 +183,7 @@ class RolePermissionSeeder extends Seeder
                 'posts.delete.own',
                 'posts.force_delete.own',
                 'posts.restore.own',
-                
+
                 // Categories and tags (read-only)
                 'categories.read',
                 'categories.view',
@@ -187,7 +191,7 @@ class RolePermissionSeeder extends Seeder
                 'tags.read',
                 'tags.view',
                 'tags.list',
-                
+
                 // Media management
                 'media.create',
                 'media.read',
@@ -197,7 +201,7 @@ class RolePermissionSeeder extends Seeder
                 'media.delete.own',
                 'media.force_delete.own',
                 'media.restore.own',
-                
+
                 // Comments on own posts
                 'comments.create',
                 'comments.read',
@@ -229,7 +233,7 @@ class RolePermissionSeeder extends Seeder
                 'comments.delete.own',
                 'comments.force_delete.own',
                 'comments.restore.own',
-                
+
                 // Media (own uploads)
                 'media.create',
                 'media.read',
@@ -239,7 +243,7 @@ class RolePermissionSeeder extends Seeder
                 'media.delete.own',
                 'media.force_delete.own',
                 'media.restore.own',
-                
+
                 // Profile access
                 'users.read',
                 'users.view',

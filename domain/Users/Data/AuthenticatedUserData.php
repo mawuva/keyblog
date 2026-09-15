@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Domain\Users\Data;
 
-use Spatie\LaravelData\Data;
-use Domain\Users\Models\User;
 use Domain\Users\Enums\KeycloakRoleEnum;
+use Domain\Users\Models\User;
+use Spatie\LaravelData\Data;
 
 class AuthenticatedUserData extends Data
 {
@@ -19,6 +19,7 @@ class AuthenticatedUserData extends Data
         public readonly array $roles,
         public readonly array $groups,
         public readonly bool $isAdmin,
+        public readonly bool $canAccessAdmin,
         public readonly bool $isActive,
         public readonly ?string $lastLoginAt,
         public readonly ?string $lastLoginIp,
@@ -36,6 +37,7 @@ class AuthenticatedUserData extends Data
             roles: $user->keycloak_roles ?? [],
             groups: $user->keycloak_groups ?? [],
             isAdmin: $user->hasKeycloakRole(KeycloakRoleEnum::ADMIN->value) || $user->isInGroup(KeycloakRoleEnum::ADMIN->value),
+            canAccessAdmin: $user->canAccessAdmin(),
             isActive: $user->is_active ?? true,
             lastLoginAt: $user->last_login_at?->format('Y-m-d H:i:s'),
             lastLoginIp: $user->last_login_ip,
@@ -54,6 +56,7 @@ class AuthenticatedUserData extends Data
             roles: $payload['realm_roles'] ?? [],
             groups: $payload['groups'] ?? [],
             isAdmin: self::isAdminFromKeycloakPayload($payload),
+            canAccessAdmin: self::isAdminFromKeycloakPayload($payload),
             isActive: true,
             lastLoginAt: now()->format('Y-m-d H:i:s'),
             lastLoginIp: request()->ip(),
@@ -77,11 +80,6 @@ class AuthenticatedUserData extends Data
         return in_array($group, $this->groups);
     }
 
-    public function canAccessAdmin(): bool
-    {
-        return $this->isAdmin;
-    }
-
     public function toArray(): array
     {
         return [
@@ -93,6 +91,7 @@ class AuthenticatedUserData extends Data
             'roles' => $this->roles,
             'groups' => $this->groups,
             'isAdmin' => $this->isAdmin,
+            'canAccessAdmin' => $this->canAccessAdmin,
             'isActive' => $this->isActive,
             'lastLoginAt' => $this->lastLoginAt,
             'lastLoginIp' => $this->lastLoginIp,

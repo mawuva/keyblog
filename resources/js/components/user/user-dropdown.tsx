@@ -11,9 +11,9 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { useInitials } from '@/hooks/use-initials';
 import { useLang } from '@/hooks/use-lang';
+import { getUserDropdownItems } from '@/lib/navigation';
 import { type SharedData } from '@/types';
 import { type DropdownItem } from '@/types/navigation';
-import { getUserDropdownItems } from '@/lib/navigation';
 
 export default function UserDropdown() {
     const { auth } = usePage<SharedData>().props;
@@ -33,7 +33,7 @@ export default function UserDropdown() {
 
     const handleDashboard = () => {
         // Rediriger vers le dashboard approprié selon le rôle de l'utilisateur
-        if (user.email?.includes('admin') || user.isAdmin) {
+        if (user.canAccessAdmin) {
             router.visit('/admin/dashboard');
         } else {
             router.visit('/member/dashboard');

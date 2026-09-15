@@ -20,6 +20,7 @@ export type UserData = {
     roles: string[];
     groups: string[];
     isAdmin: boolean;
+    canAccessAdmin: boolean;
     isActive: boolean;
     lastLoginAt: string | null;
     lastLoginIp: string | null;

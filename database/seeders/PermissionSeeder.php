@@ -34,7 +34,7 @@ class PermissionSeeder extends Seeder
                         if ($scope === PermissionScope::ALL) {
                             continue;
                         }
-                        
+
                         $scopedPermissionName = "{$entity}.{$action}.{$scope->value}";
                         $this->createPermission($scopedPermissionName, $entity, $action, $scope->value);
                     }
@@ -137,6 +137,7 @@ class PermissionSeeder extends Seeder
 
             // Admin permissions
             PermissionEntity::ADMIN->value => [
+                PermissionAction::ACCESS->value,
                 PermissionAction::MANAGE->value,
                 PermissionAction::VIEW->value,
             ],

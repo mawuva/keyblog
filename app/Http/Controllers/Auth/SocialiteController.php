@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Domain\Users\Actions\SaveUserFromKeycloak;
+use Domain\Users\Services\KeycloakService;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
-use Domain\Users\Services\KeycloakService;
-use Domain\Users\Actions\SaveUserFromKeycloak;
 
 class SocialiteController extends Controller
 {
@@ -16,7 +16,7 @@ class SocialiteController extends Controller
     {
         $this->keycloakService = $keycloakService;
     }
-    
+
     /**
      * Redirection vers Keycloak
      */
@@ -40,7 +40,7 @@ class SocialiteController extends Controller
 
         Auth::login($user, true);
 
-        if ($user->isKeycloakAdmin()) {
+        if ($user->canAccessAdmin()) {
             return to_route('admin.dashboard');
         }
 
@@ -58,10 +58,10 @@ class SocialiteController extends Controller
         request()->session()->regenerateToken();
 
         $logoutUrl = $this->keycloakService->getLogoutUrl();
-            
+
         // Nettoyer la session
         request()->session()->forget('keycloak_token');
-        
+
         return redirect($logoutUrl);
     }
 }
